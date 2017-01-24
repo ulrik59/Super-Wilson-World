@@ -1,0 +1,28 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb-base",
+
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+
+  "rules": {
+    "max-len": ["error", 120, 2],
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": 0
+  },
+
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./webpack.config.js"
+      }
+    }
+  }
+}
