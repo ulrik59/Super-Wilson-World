@@ -3,6 +3,9 @@ import Mushroom from '../sprites/Mushroom';
 
 class GameTitle extends Phaser.State {
   init() {
+    this.stage.backgroundColor = '#FF0';
+    this.game.world.width = this.game.width;
+    this.game.world.height = this.game.height;
     this.timer = 0;
   }
 

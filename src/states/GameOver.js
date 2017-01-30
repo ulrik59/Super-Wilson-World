@@ -2,6 +2,9 @@ import Phaser from 'phaser-ce';
 
 class GameOver extends Phaser.State {
   init() {
+    this.stage.backgroundColor = '#FF0';
+    this.game.world.width = this.game.width;
+    this.game.world.height = this.game.height;
     this.timer = 0;
   }
 

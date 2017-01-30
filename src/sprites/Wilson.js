@@ -20,7 +20,11 @@ class Wilson extends Phaser.Sprite {
   }
 
   update() {
-    this.game.physics.arcade.collide(this, this.game.layer);
+    if (!this.body.enable) {
+      return;
+    }
+
+    // this.game.physics.arcade.collide(this, this.game.layer);
     this.body.velocity.x = 0;
 
     if (this.game.cursors.left.isDown) {
