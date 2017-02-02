@@ -2,6 +2,7 @@
 import Phaser from 'phaser-ce';
 import Wilson from '../sprites/Wilson';
 import Droid from '../sprites/Droid';
+import SpaceInvader from '../sprites/SpaceInvader';
 
 class Level1 extends Phaser.State {
   create() {
@@ -20,10 +21,12 @@ class Level1 extends Phaser.State {
     this.physics.arcade.gravity.y = 500;
 
     this.player = new Wilson({ game: this.game, x: 32, y: 32, asset: 'dude' });
-    this.add.existing(this.player);
-
     this.droid = new Droid({ game: this.game, x: 410, y: 176, asset: 'droid' });
+    this.spaceinvader = new SpaceInvader({ game: this.game, x: 500, y: 50, asset: 'SpaceInvader' });
+
+    this.add.existing(this.player);
     this.add.existing(this.droid);
+    this.add.existing(this.spaceinvader);
 
     this.camera.follow(this.player);
   }
@@ -31,7 +34,9 @@ class Level1 extends Phaser.State {
   update() {
     this.physics.arcade.collide(this.player, this.layer);
     this.physics.arcade.collide(this.droid, this.layer);
-    this.physics.arcade.overlap(this.player, this.droid, this.droidOverlap, null, this);
+    this.physics.arcade.collide(this.spaceinvader.weapon.bullets, this.layer, bullet => bullet.kill(), null, this);
+    this.physics.arcade.overlap(this.droid, this.player, this.droidOverlap, null, this);
+    this.physics.arcade.overlap(this.spaceinvader.weapon.bullets, this.player, this.bulletPlayerOverlap, null, this);
   }
 
   render() {
@@ -42,19 +47,20 @@ class Level1 extends Phaser.State {
 
   droidOverlap() {
     if (this.player.body.touching.down) {
-      this.droid.animations.stop();
-      this.droid.body.enable = false;
+      this.droid.die();
       this.player.body.velocity.y = -80;
       this.time.events.add(Phaser.Timer.SECOND, () => this.droid.kill());
       return;
     }
 
-    this.player.frame = 4;
-    this.player.body.enable = false;
-    this.player.animations.stop();
-    this.time.events.add(Phaser.Timer.SECOND, () => {
-      this.state.start('GameOver');
-    });
+    this.player.die();
+    this.time.events.add(Phaser.Timer.SECOND, () => this.state.start('GameOver'));
+  }
+
+  bulletPlayerOverlap(player, bullet) {
+    bullet.kill();
+    player.die();
+    this.time.events.add(Phaser.Timer.SECOND, () => this.state.start('GameOver'));
   }
 }
 

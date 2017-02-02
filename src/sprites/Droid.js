@@ -35,6 +35,11 @@ class Droid extends Phaser.Sprite {
       this.facing = 'right';
     }
   }
+
+  die() {
+    this.body.enable = false;
+    this.animations.stop();
+  }
 }
 
 export default Droid;

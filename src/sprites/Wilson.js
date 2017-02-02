@@ -35,7 +35,7 @@ class Wilson extends Phaser.Sprite {
       this.stopMoving();
     }
 
-    if (this.game.spacebar.isDown) {
+    if (this.game.cursors.up.isDown) {
       this.jump();
     }
   }
@@ -75,6 +75,12 @@ class Wilson extends Phaser.Sprite {
       this.body.velocity.y = -250;
       this.jumpTimer = this.game.time.now + 750;
     }
+  }
+
+  die() {
+    this.frame = 4;
+    this.body.enable = false;
+    this.animations.stop();
   }
 }
 

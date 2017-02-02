@@ -18,6 +18,8 @@ class Preload extends Phaser.State {
     this.load.image('starSmall', 'assets/startruck/star.png');
     this.load.image('starBig', 'assets/startruck/star2.png');
     this.load.image('background', 'assets/startruck/background2.png');
+    this.load.image('SpaceInvader', 'assets/Space Invader.png');
+    this.load.image('bullet', 'assets/bullet.png');
   }
 
   create() {
