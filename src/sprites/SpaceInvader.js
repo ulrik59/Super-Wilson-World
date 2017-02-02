@@ -5,7 +5,7 @@ class SpaceInvader extends Phaser.Sprite {
     super(game, x, y, asset);
 
     this.game = game;
-    this.game.add.tween(this).to({ y: y + 10 }, 2000, Phaser.Easing.Sinusoidal.InOut, true, 0, 1000, true);
+    this.game.add.tween(this).to({ y: y + 10 }, 2000, Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
 
     this.weapon = this.game.add.weapon(1, 'bullet');
     this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;

@@ -11,8 +11,18 @@ class Preload extends Phaser.State {
 
     // load all assets
     this.load.image('mushroom', 'assets/title/mushroom2.png');
-    this.load.tilemap('level1', 'assets/startruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
-    this.load.image('tiles-1', 'assets/startruck/tiles-1.png');
+
+    this.load.tilemap('level1_startruck', 'assets/startruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('tiles-1_startruck', 'assets/startruck/tiles-1.png');
+
+    this.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('rocket-still', 'assets/rocket-still.png');
+    this.load.image('rocket-fire', 'assets/rocket-fire.png');
+    this.load.image('pipe', 'assets/Tuyau.png');
+    this.load.image('brique', 'assets/Brique2.png');
+    this.load.image('bloc_sol', 'assets/Bloc_sol_2.png');
+    this.load.image('rocket-bloc', 'assets/rocket-bloc.png');
+
     this.load.spritesheet('dude', 'assets/startruck/dude.png', 32, 48);
     this.load.spritesheet('droid', 'assets/startruck/droid.png', 32, 32);
     this.load.image('starSmall', 'assets/startruck/star.png');

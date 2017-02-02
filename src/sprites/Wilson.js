@@ -24,7 +24,6 @@ class Wilson extends Phaser.Sprite {
       return;
     }
 
-    // this.game.physics.arcade.collide(this, this.game.layer);
     this.body.velocity.x = 0;
 
     if (this.game.cursors.left.isDown) {
@@ -35,13 +34,13 @@ class Wilson extends Phaser.Sprite {
       this.stopMoving();
     }
 
-    if (this.game.cursors.up.isDown) {
+    if (this.game.cursors.up.isDown || this.game.spacebar.isDown) {
       this.jump();
     }
   }
 
   moveRight() {
-    this.body.velocity.x = 150;
+    this.body.velocity.x = 250;
 
     if (this.facing !== 'right') {
       this.animations.play('right');
@@ -50,7 +49,7 @@ class Wilson extends Phaser.Sprite {
   }
 
   moveLeft() {
-    this.body.velocity.x = -150;
+    this.body.velocity.x = -250;
 
     if (this.facing !== 'left') {
       this.animations.play('left');
@@ -72,7 +71,7 @@ class Wilson extends Phaser.Sprite {
 
   jump() {
     if (this.body.onFloor() && this.game.time.now > this.jumpTimer) {
-      this.body.velocity.y = -250;
+      this.body.velocity.y = -450;
       this.jumpTimer = this.game.time.now + 750;
     }
   }
